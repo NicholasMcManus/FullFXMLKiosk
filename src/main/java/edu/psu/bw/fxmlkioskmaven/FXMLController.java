@@ -1,16 +1,4 @@
-/*
- * file name: FXMLDocumentController.java
- * programmer name: Nick McManus
- * date created: 09-18-2020
- * date of last revision: 
- * details of last revision:
- * short description: 
- */
-package fxmlkiosk;
-
-//Implementation of FXML Encoder based on research by 
-//https://people.kth.se/~maguire/.c/DEGREE-PROJECT-REPORTS/131008-Elmira_Khodabandehloo-with-cover.pdf
-
+package edu.psu.bw.fxmlkioskmaven;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,11 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-/**
- *
- * @author Nick McManus
- */
-public class FXMLDocumentController implements Initializable {
+public class FXMLController implements Initializable {
     
     @FXML
     private Label label;
@@ -38,5 +22,4 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
 }

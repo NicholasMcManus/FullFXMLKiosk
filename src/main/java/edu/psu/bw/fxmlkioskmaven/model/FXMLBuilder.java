@@ -7,7 +7,7 @@
  * short description: 
  */
 
-package model;
+package edu.psu.bw.fxmlkioskmaven.model;
 
 public class FXMLBuilder {
 

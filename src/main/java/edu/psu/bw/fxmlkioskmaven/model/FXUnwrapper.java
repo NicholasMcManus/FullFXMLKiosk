@@ -7,7 +7,7 @@
  * short description: 
  */
 
-package model;
+package edu.psu.bw.fxmlkioskmaven.model;
 
 import javafx.scene.Node;
 import javafx.scene.Parent;

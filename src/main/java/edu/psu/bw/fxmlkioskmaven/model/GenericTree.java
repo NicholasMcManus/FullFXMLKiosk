@@ -7,7 +7,7 @@
  * short description: 
  */
 
-package model;
+package edu.psu.bw.fxmlkioskmaven.model;
 
 import java.util.ArrayList;
 import java.util.List;
