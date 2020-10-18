@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import edu.psu.bw.fxmlkioskmaven.model.*;
 
 public class MainApp extends Application {
 
@@ -19,6 +20,10 @@ public class MainApp extends Application {
         
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
+        
+        //Test unwrapping javafx node
+        //System.out.println(FXUnwrapper.getStructure(root));
+        
         stage.show();
     }
 
