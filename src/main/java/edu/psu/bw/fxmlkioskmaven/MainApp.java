@@ -13,6 +13,10 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        //Testing DB Stuff
+        new edu.psu.bw.fxmlkioskmaven.controller.SQLiteDatabaseTest();
+        
+        //*
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
         Scene scene = new Scene(root);
@@ -25,6 +29,7 @@ public class MainApp extends Application {
         //System.out.println(FXUnwrapper.getStructure(root));
         
         stage.show();
+        //*/
     }
 
     /**
