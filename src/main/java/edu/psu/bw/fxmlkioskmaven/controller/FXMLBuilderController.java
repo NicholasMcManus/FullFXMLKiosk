@@ -40,6 +40,7 @@ public class FXMLBuilderController implements Initializable {
         //Setting up item columns
         System.out.println("Setting up table columns");
         
+        //Setting up columns that correspond to database columns
         TableColumn<TestItem,Integer> idColumn = new TableColumn("Id");
         idColumn.setCellValueFactory(new PropertyValueFactory("id"));
         

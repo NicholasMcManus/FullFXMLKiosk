@@ -25,6 +25,7 @@ public class FXMLController implements Initializable {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
         
+        //Launch test frame
         stage.show();
     }
 

@@ -12,7 +12,7 @@ package edu.psu.bw.fxmlkioskmaven.model;
 import java.util.ArrayList;
 import java.util.List;
 
-//A Basic Implementation of Tree Data Structure
+//An ArrayList Implementation of an n-node Tree Data Structure
 public class GenericTree <T>{
     private static int layer = 0;
     

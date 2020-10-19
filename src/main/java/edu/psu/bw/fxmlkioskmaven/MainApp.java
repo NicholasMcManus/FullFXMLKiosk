@@ -17,6 +17,7 @@ public class MainApp extends Application {
         new edu.psu.bw.fxmlkioskmaven.controller.SQLiteDatabaseTest();
         
         //*
+        //Launching root application
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
         Scene scene = new Scene(root);
@@ -26,7 +27,7 @@ public class MainApp extends Application {
         stage.setScene(scene);
         
         //Test unwrapping javafx node
-        //System.out.println(FXUnwrapper.getStructure(root));
+        System.out.println(FXUnwrapper.getStructure(root));
         
         stage.show();
         //*/

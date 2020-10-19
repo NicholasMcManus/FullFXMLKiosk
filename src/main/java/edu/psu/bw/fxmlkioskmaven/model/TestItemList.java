@@ -20,8 +20,12 @@ import javafx.collections.FXCollections;
 
 public class TestItemList {
     
+    //Setting up an observable list
     private ListProperty<TestItem> itemList;
 
+    /**
+     * Just put together a list for testing methodology
+     */
     public TestItemList()
     {
         itemList = new SimpleListProperty(FXCollections.observableArrayList());
@@ -34,6 +38,7 @@ public class TestItemList {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
+            //This will eventually be a prepared statement getting table from information given by admin users
             ResultSet rs = statement.executeQuery("select * from TestItems");
             
             //ItemID|ItemName|ItemPrice|ItemDescription
@@ -41,6 +46,8 @@ public class TestItemList {
             while (rs.next()) {
                 // read the result set
                 TestItem temp;
+                
+                //Get the componants from the current record
                 String name = rs.getString("ItemName");
                 int id = rs.getInt("ItemId");
                 double price = rs.getDouble("ItemPrice");
@@ -66,6 +73,10 @@ public class TestItemList {
         }
     }
     
+    /**
+     * The getter that actually return the observable list
+     * @return An observable list of TestItems
+     */
     public ListProperty<TestItem> getItemList() {
         return itemList;
     }

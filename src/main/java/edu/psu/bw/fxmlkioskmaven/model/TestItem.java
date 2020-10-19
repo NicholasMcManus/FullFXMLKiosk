@@ -17,10 +17,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class TestItem {
+    //Class variables
     private final IntegerProperty idProperty;
     private final StringProperty nameProperty, descriptionProperty;
     private final DoubleProperty priceProperty;
 
+    /**
+     * Constructor for a database record
+     * @param ID The ID of the record
+     * @param name The name given to the record
+     * @param description The description of the record
+     * @param price The price of the item
+     */
     public TestItem(int ID, String name, String description, double price) {
         this.idProperty = new SimpleIntegerProperty(ID);
         this.nameProperty = new SimpleStringProperty(name);
@@ -28,6 +36,7 @@ public class TestItem {
         this.priceProperty = new SimpleDoubleProperty(price);
     }
 
+    //Accessor methods for the individual properties
     public IntegerProperty idProperty() {
         return idProperty;
     }
@@ -44,6 +53,7 @@ public class TestItem {
         return priceProperty;
     }
     
+    //Getters for the basic data held in the property
     public int getId()
     {
         return idProperty.get();
@@ -64,6 +74,7 @@ public class TestItem {
         return priceProperty.get();
     }
 
+    //Setters for the different properties
     public void setIdProperty(int id) {
         this.idProperty.set(id);
     }
