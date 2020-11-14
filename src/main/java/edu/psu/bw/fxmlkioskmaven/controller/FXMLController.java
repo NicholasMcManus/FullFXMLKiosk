@@ -20,19 +20,33 @@ public class FXMLController implements Initializable {
     private Label label;
     private Stage stage;
 
+    //Button that launches the admin panel. This will look nicer later.
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private void handleAdminAction(ActionEvent event)
+    {
+        System.out.println("Loading Administration Page");
+        
+        stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/AdministrationPage.fxml"));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/Styles.css");
+
+            stage.setTitle("Administration");
+            stage.setScene(scene);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         //Launch test frame
         stage.show();
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //Prepare to launch the test frame when the button is pressed
-        //*
+    
+    //Handler that launches the menu panel
+    @FXML
+    private void handleButtonAction(ActionEvent event) {        
         stage = new Stage();
         Parent root = null;
         try {
@@ -46,6 +60,17 @@ public class FXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //Launch test frame
+        stage.show();
+    }
+
+    //Nothing special happens when the primary frame is called.
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        //Prepare to launch the test frame when the button is pressed
+        //*
+        
         //*/
     }
 }
