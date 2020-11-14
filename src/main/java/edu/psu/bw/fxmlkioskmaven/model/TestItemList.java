@@ -29,6 +29,15 @@ public class TestItemList {
     public TestItemList()
     {
         itemList = new SimpleListProperty(FXCollections.observableArrayList());
+        loadItemList();
+    }
+    
+    /**
+     * This method re-runs the list builder
+     * Potentially computationally expensive depending on size of table
+     */
+    final public void loadItemList(){
+        itemList.clear();
         
         Connection connection = null;
         try {

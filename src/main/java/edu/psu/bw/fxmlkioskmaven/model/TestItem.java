@@ -90,4 +90,9 @@ public class TestItem {
     public void setPriceProperty(double price) {
         this.priceProperty.set(price);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s: $%.2f", getName(), getPrice());
+    }
 }
