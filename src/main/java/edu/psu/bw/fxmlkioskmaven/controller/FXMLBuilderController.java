@@ -50,10 +50,7 @@ public class FXMLBuilderController implements Initializable {
         //Setting up item columns
         System.out.println("Setting up table columns");
         
-        //Setting up columns that correspond to database columns
-        TableColumn<TestItem,Integer> idColumn = new TableColumn("Id");
-        idColumn.setCellValueFactory(new PropertyValueFactory("id"));
-        
+        //Setting up columns that correspond to database columns        
         TableColumn<TestItem,String> nameColumn = new TableColumn("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory("name"));
         
@@ -64,7 +61,7 @@ public class FXMLBuilderController implements Initializable {
         descriptionColumn.setCellValueFactory(new PropertyValueFactory("description"));
         
         //Adding the columns to the table
-        displayTable.getColumns().setAll(idColumn, nameColumn, priceColumn, descriptionColumn);
+        displayTable.getColumns().setAll(nameColumn, priceColumn, descriptionColumn);
         addButtonColumn();
     }
     

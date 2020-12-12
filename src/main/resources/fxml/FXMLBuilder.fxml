@@ -15,4 +15,7 @@
          </children>
       </Pane>
    </center>
+   <bottom>
+      <Button mnemonicParsing="false" style="-fx-background-color: #66FF77;" text="Checkout" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
