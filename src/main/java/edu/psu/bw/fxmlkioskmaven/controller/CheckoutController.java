@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 
@@ -37,21 +38,21 @@ import javafx.util.converter.NumberStringConverter;
  */
 public class CheckoutController implements Initializable {
 
+    //Setting up FXML objects
     @FXML
     VBox receiptBox;
-    
     @FXML
     TextField totalBox;
-    
     @FXML
     TextField paymentBox;
-    
     @FXML
     TextField remainingBox;
-    
     @FXML
     Region sampleRegion;
+    @FXML
+    Label purchaseStatus;
     
+    //Setting up class variables
     private ObservableList<CartItem> cart;
     private DoubleProperty total;
     private DoubleProperty payment;
@@ -95,33 +96,34 @@ public class CheckoutController implements Initializable {
         System.out.println(FXUnwrapper.getStructure(receiptBox));
     }
     
+    //Add a single item entry from the passed cart
     private void addItemCost(CartItem item)
     {
         //Add items to vbox
         HBox row = new HBox();
+        row.setAlignment(Pos.CENTER_LEFT);
+        
+        //Configure the spaces between the numbers
         Region leftSpace = new Region();
         setupRegion(leftSpace);
         
         Region rightSpace = new Region();
         setupRegion(rightSpace);
         
-        row.setAlignment(Pos.CENTER_LEFT);
-        
+        //Setup the different fields of a cart item
         Label itemLabel = new Label();
-        //itemLabel.setAlignment(Pos.CENTER_LEFT);
         itemLabel.textProperty().bind(item.getItem().nameProperty());
         itemLabel.setPrefWidth(100);
         
         Label quantityLabel = new Label();
-        //quantityLabel.setAlignment(Pos.CENTER);
         quantityLabel.textProperty().bind(item.quantity().asString());
         quantityLabel.setPrefWidth(100);
         
         Label totalLabel = new Label();
-        //totalLabel.setAlignment(Pos.CENTER_RIGHT);
         totalLabel.textProperty().bind(item.total().asString("%.2f"));
         totalLabel.setPrefWidth(100);
         
+        //Add the cart items to the row before adding the row to the VBox
         row.getChildren().addAll(itemLabel, leftSpace, quantityLabel,
                 rightSpace, totalLabel);
         
@@ -129,8 +131,10 @@ public class CheckoutController implements Initializable {
         
         //Add items to total
         total.setValue(total.add(item.total().get()).get());
+        purchaseStatus.setText("");
     }
     
+    //Set up the regions to make them consistent with the left one defined in the FXML
     private void setupRegion(Region current)
     {
         current.maxHeightProperty().bind(current.prefHeightProperty());
@@ -138,9 +142,20 @@ public class CheckoutController implements Initializable {
         current.prefWidthProperty().bind(sampleRegion.prefWidthProperty());
     }
     
+    //Fairly simple purchase handler, can be changed later
     @FXML
     private void handlePayment()
     {
-        System.out.println("You are trying to checkout, but it's not implemented yet...");
+        if(change.getValue() <= 0)
+        {
+            purchaseStatus.setText("Success!");
+            purchaseStatus.setTextFill(Paint.valueOf("#00AA00"));
+            paymentBox.setEditable(false);
+        }
+        else
+        {
+            purchaseStatus.setText("Failure.");
+            purchaseStatus.setTextFill(Paint.valueOf("#FF3333"));
+        }
     }
 }

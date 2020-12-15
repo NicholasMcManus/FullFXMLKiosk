@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -37,14 +38,23 @@
                   <Label alignment="TOP_LEFT" text="Total" />
                   <TextField fx:id="totalBox" editable="false" focusTraversable="false" GridPane.columnIndex="1" />
                   <TextField fx:id="paymentBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlePayment" text="Pay" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                   <Label text="Payment" GridPane.rowIndex="1" />
                   <Label text="Remaining" GridPane.rowIndex="2" />
                   <TextField fx:id="remainingBox" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlePayment" text="Pay">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label fx:id="purchaseStatus" alignment="CENTER_RIGHT" text="Label">
+                           <padding>
+                              <Insets left="10.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </children>
