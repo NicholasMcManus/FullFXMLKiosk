@@ -10,7 +10,18 @@
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <VBox fx:id="receiptBox" layoutX="14.0" layoutY="14.0" prefHeight="216.0" prefWidth="570.0" />
+            <VBox fx:id="receiptBox" layoutX="14.0" layoutY="14.0" prefHeight="216.0" prefWidth="570.0">
+               <children>
+                  <HBox prefHeight="17.0" prefWidth="200.0">
+                     <children>
+                        <Label prefWidth="100.0" text="Name" />
+                        <Region fx:id="sampleRegion" maxHeight="-Infinity" prefHeight="17.0" prefWidth="150.0" />
+                        <Label prefWidth="100.0" text="Qty" />
+                        <Region maxHeight="-Infinity" prefHeight="17.0" prefWidth="150.0" />
+                        <Label prefWidth="100.0" text="Total" />
+                     </children>
+                  </HBox>
+               </children></VBox>
             <GridPane layoutX="64.0" layoutY="237.0" prefHeight="119.0" prefWidth="262.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

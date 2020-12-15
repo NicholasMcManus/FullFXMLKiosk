@@ -25,6 +25,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
@@ -47,6 +48,9 @@ public class CheckoutController implements Initializable {
     
     @FXML
     TextField remainingBox;
+    
+    @FXML
+    Region sampleRegion;
     
     private ObservableList<CartItem> cart;
     private DoubleProperty total;
@@ -80,7 +84,7 @@ public class CheckoutController implements Initializable {
     
     public void loadCart(List<CartItem> cart)
     {
-        this.cart.addAll(cart);
+        this.cart.addAll(cart);        
         System.out.println("Cart passed into Checkout: Size: " + cart.size());
         cart.forEach(item -> 
         {
@@ -95,26 +99,43 @@ public class CheckoutController implements Initializable {
     {
         //Add items to vbox
         HBox row = new HBox();
+        Region leftSpace = new Region();
+        setupRegion(leftSpace);
+        
+        Region rightSpace = new Region();
+        setupRegion(rightSpace);
+        
         row.setAlignment(Pos.CENTER_LEFT);
         
         Label itemLabel = new Label();
-        itemLabel.setAlignment(Pos.CENTER_LEFT);
+        //itemLabel.setAlignment(Pos.CENTER_LEFT);
         itemLabel.textProperty().bind(item.getItem().nameProperty());
+        itemLabel.setPrefWidth(100);
         
         Label quantityLabel = new Label();
-        quantityLabel.setAlignment(Pos.CENTER);
+        //quantityLabel.setAlignment(Pos.CENTER);
         quantityLabel.textProperty().bind(item.quantity().asString());
+        quantityLabel.setPrefWidth(100);
         
         Label totalLabel = new Label();
-        totalLabel.setAlignment(Pos.CENTER_RIGHT);
+        //totalLabel.setAlignment(Pos.CENTER_RIGHT);
         totalLabel.textProperty().bind(item.total().asString("%.2f"));
+        totalLabel.setPrefWidth(100);
         
-        row.getChildren().addAll(itemLabel, quantityLabel, totalLabel);
+        row.getChildren().addAll(itemLabel, leftSpace, quantityLabel,
+                rightSpace, totalLabel);
         
         receiptBox.getChildren().add(row);
         
         //Add items to total
         total.setValue(total.add(item.total().get()).get());
+    }
+    
+    private void setupRegion(Region current)
+    {
+        current.maxHeightProperty().bind(current.prefHeightProperty());
+        current.prefHeightProperty().bind(sampleRegion.prefHeightProperty());
+        current.prefWidthProperty().bind(sampleRegion.prefWidthProperty());
     }
     
     @FXML
