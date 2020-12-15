@@ -1,5 +1,6 @@
 package edu.psu.bw.fxmlkioskmaven;
 
+import edu.psu.bw.fxmlkioskmaven.controller.FXMLBuilderController;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -7,30 +8,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import edu.psu.bw.fxmlkioskmaven.model.*;
-
 public class MainApp extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        //Testing DB Stuff
-        new edu.psu.bw.fxmlkioskmaven.controller.SQLiteDatabaseTest();
+    public void start(Stage stage) throws Exception {   
         
-        //*
         //Launching root application
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/FXMLBuilder.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(getClass().getResource("/fxml/FXMLBuilder.fxml").openStream());
+        FXMLBuilderController bController = (FXMLBuilderController)fxmlLoader.getController();
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
-        stage.setTitle("JavaFX and Maven");
+        stage.setTitle("[Restaurant Name Here]");
         stage.setScene(scene);
         
-        //Test unwrapping javafx node
-        System.out.println(FXUnwrapper.getStructure(root));
+        //Add the stage to the controller so it can be opened and closed
+        if(bController != null)
+            bController.setStage(stage);
         
         stage.show();
-        //*/
     }
 
     /**
