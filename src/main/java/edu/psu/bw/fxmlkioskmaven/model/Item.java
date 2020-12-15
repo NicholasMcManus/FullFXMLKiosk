@@ -58,6 +58,24 @@ public abstract class Item {
         this.priceProperty.set(price);
     }
     
+    //protected final StringProperty nameProperty, descriptionProperty;
+    //protected final DoubleProperty priceProperty;
+    
+    public StringProperty nameProperty()
+    {
+        return this.nameProperty;
+    }
+    
+    public StringProperty descriptionProperty()
+    {
+        return this.descriptionProperty;
+    }
+    
+    public DoubleProperty priceProperty()
+    {
+        return this.priceProperty;
+    }
+    
     @Override
     public String toString() {
         return String.format("%s: $%.2f", getName(), getPrice());
