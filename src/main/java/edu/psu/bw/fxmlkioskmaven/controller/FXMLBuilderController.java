@@ -57,7 +57,7 @@ public class FXMLBuilderController implements Initializable {
         //Load the checkout page
         System.out.println("Loading Checkout Page");
         
-        stage = new Stage();
+        Stage stage = new Stage();
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -77,6 +77,36 @@ public class FXMLBuilderController implements Initializable {
         
         //Launch test frame
         stage.show();
+    }
+    
+    @FXML
+    private void handleAdminButton()
+    {
+        System.out.println("Loading Administration Page");
+        
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/AdministrationPage.fxml"));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/Styles.css");
+
+            stage.setTitle("Administration");
+            stage.setScene(scene);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Launch test frame
+        stage.show();
+    }
+    
+    @FXML
+    private void handleLoginButton()
+    {
+        System.out.println("Logging in once this is implemented");
+    
     }
     
     /**

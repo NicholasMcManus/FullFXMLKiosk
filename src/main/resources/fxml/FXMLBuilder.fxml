@@ -16,20 +16,26 @@
          </children>
       </Pane>
    </center>
-   <top>
-      <Button mnemonicParsing="false" text="Login" BorderPane.alignment="TOP_RIGHT">
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-         </padding>
-      </Button>
-   </top>
    <bottom>
       <Button fx:id="btnCheckout" mnemonicParsing="false" onAction="#handleCheckout" style="-fx-background-color: #66FF77;" text="Checkout" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="5.0" />
          </BorderPane.margin></Button>
    </bottom>
+   <top>
+      <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleAdminButton" text="Administration">
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLoginButton" text="Login">
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
+            </Button>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>
