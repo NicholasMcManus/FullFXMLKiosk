@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -92,8 +91,12 @@ public class FXMLBuilderController implements Initializable {
 
     public void openMenu()
     {
-        //Update offerings?
         stage.show();
+    }
+    
+    public void updateMenu()
+    {
+        itemList.loadItemList();
     }
     
     @FXML
@@ -114,6 +117,14 @@ public class FXMLBuilderController implements Initializable {
             Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        //Update the menu from the DB after the admin panel is closed
+        adminStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent we) {
+                updateMenu();
+            }
+        });
+        
         //Launch test frame
         adminStage.show();
     }
@@ -159,8 +170,7 @@ public class FXMLBuilderController implements Initializable {
     private void addButtonColumn() {
         TableColumn<TestItem, Void> addColumn = new TableColumn("");
         Callback<TableColumn<TestItem, Void>, TableCell<TestItem, Void>> cellFactory = null;
-
-        //* Netbeans refuses to parse the file when this is included. I don't blame it. 
+ 
         cellFactory = (final TableColumn<TestItem, Void> param) -> {
             final TableCell<TestItem, Void> cell = new TableCell<TestItem, Void>() {
 
@@ -187,7 +197,7 @@ public class FXMLBuilderController implements Initializable {
                 }
             };
             return cell;
-        };//*/
+        };
 
         addColumn.setCellFactory(cellFactory);
         displayTable.getColumns().add(addColumn);
