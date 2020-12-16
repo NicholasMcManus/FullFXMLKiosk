@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
@@ -25,7 +26,13 @@
    <top>
       <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleAdminButton" text="Administration">
+            <Label fx:id="lblWelcome" text="Welcome!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Region prefHeight="27.0" prefWidth="200.0" />
+            <Button fx:id="btnAdmin" mnemonicParsing="false" onAction="#handleAdminButton" text="Administration">
                <padding>
                   <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                </padding>
