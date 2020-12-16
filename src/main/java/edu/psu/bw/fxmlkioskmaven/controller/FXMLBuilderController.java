@@ -11,6 +11,7 @@ package edu.psu.bw.fxmlkioskmaven.controller;
 import edu.psu.bw.fxmlkioskmaven.model.CartItem;
 import edu.psu.bw.fxmlkioskmaven.model.TestItem;
 import edu.psu.bw.fxmlkioskmaven.model.TestItemList;
+import edu.psu.bw.fxmlkioskmaven.model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,7 +47,11 @@ public class FXMLBuilderController implements Initializable {
     private TableView<TestItem> displayTable;
     @FXML
     private Button btnCheckout;
-
+    @FXML
+    private Button btnAdmin;
+    @FXML
+    private Label lblWelcome;
+    
     private TestItemList itemList;
     private List<CartItem> cart;
     private Stage stage;
@@ -131,10 +137,54 @@ public class FXMLBuilderController implements Initializable {
 
     @FXML
     private void handleLoginButton() {
-        System.out.println("Logging in once this is implemented");
+        Stage loginStage = new Stage();
+        Parent root = null;
+        
+        final LoginController lControl;
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            root = fxmlLoader.load(getClass().getResource("/fxml/Login.fxml").openStream());
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/Styles.css");
+            lControl = (LoginController)fxmlLoader.getController();
+            
+            loginStage.setTitle("Administration");
+            loginStage.setScene(scene);
 
+            
+            loginStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent we) {
+                User cUser = lControl.getUser();
+                //openMenu();
+                if(cUser != null)
+                {
+                    addNameToWelcome(cUser.getName());
+                    if(cUser.getAccess() > 2)
+                        authorizeAdmin();
+                }
+            }
+        });
+            
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        
+        //Launch test frame
+        loginStage.show();
     }
 
+    private void addNameToWelcome(String name)
+    {
+        lblWelcome.setText("Welcome, " + name);
+    }
+    
+    private void authorizeAdmin()
+    {
+        btnAdmin.setVisible(true);
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -161,6 +211,8 @@ public class FXMLBuilderController implements Initializable {
         //Adding the columns to the table
         displayTable.getColumns().setAll(nameColumn, priceColumn, descriptionColumn);
         addButtonColumn();
+        
+        btnAdmin.setVisible(false);
     }
 
     public void setStage(Stage stage) {
