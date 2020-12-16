@@ -16,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * FXML Controller class
@@ -26,15 +28,14 @@ public class LoginController implements Initializable {
 
     @FXML
     PasswordField passwordField;
-    
     @FXML
     TextField userTextField;
-    
     @FXML
     Button btnQuit;
-    
     @FXML
     Label loginStatus;
+    
+    private final static Logger LOG = LogManager.getLogger(LoginController.class);
     
     private UserController loginSystem;
     private User user;
@@ -67,10 +68,12 @@ public class LoginController implements Initializable {
             loginStatus.setText("Welcome, " + user.getName());
             userTextField.setText("");
             passwordField.setText("");
+            LOG.info("Login Successful.");
         }
         else
         {
             loginStatus.setText("Try again.");
+            LOG.info("Login Failed.");
         }
     }
     

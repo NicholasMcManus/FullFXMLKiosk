@@ -19,7 +19,7 @@ public class FXMLController implements Initializable {
     @FXML
     private Label label;
     private Stage stage;
-
+    
     //Button that launches the admin panel. This will look nicer later.
     @FXML
     private void handleAdminAction(ActionEvent event)

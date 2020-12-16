@@ -30,6 +30,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * FXML Controller class
@@ -52,6 +54,8 @@ public class CheckoutController implements Initializable {
     @FXML
     Label purchaseStatus;
     
+    private final static Logger LOG = LogManager.getLogger(CheckoutController.class);
+    
     //Setting up class variables
     private ObservableList<CartItem> cart;
     private DoubleProperty total;
@@ -63,6 +67,7 @@ public class CheckoutController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Setting up the different properties
         cart = new SimpleListProperty(FXCollections.observableArrayList());
         total = new SimpleDoubleProperty(0);
         payment = new SimpleDoubleProperty(0);
@@ -86,14 +91,13 @@ public class CheckoutController implements Initializable {
     public void loadCart(List<CartItem> cart)
     {
         this.cart.addAll(cart);        
-        System.out.println("Cart passed into Checkout: Size: " + cart.size());
+        LOG.info("Cart passed into Checkout: Size: " + cart.size());
         cart.forEach(item -> 
         {
-            System.out.println("Name: " + item.getItem().getName());
+            LOG.trace("Name: " + item.getItem().getName());
             addItemCost(item);
         });
-        System.out.println("Total: " + String.format("$%.2f", this.total.getValue()));
-        System.out.println(FXUnwrapper.getStructure(receiptBox));
+        LOG.trace("Total: " + String.format("$%.2f", this.total.getValue()));
     }
     
     //Add a single item entry from the passed cart

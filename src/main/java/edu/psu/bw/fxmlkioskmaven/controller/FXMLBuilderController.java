@@ -17,8 +17,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -35,6 +33,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * FXML Controller class
@@ -52,6 +52,8 @@ public class FXMLBuilderController implements Initializable {
     @FXML
     private Label lblWelcome;
     
+    private final static Logger LOG = LogManager.getLogger(FXMLBuilderController.class);
+    
     private TestItemList itemList;
     private List<CartItem> cart;
     private Stage stage;
@@ -61,7 +63,7 @@ public class FXMLBuilderController implements Initializable {
     @FXML
     private void handleCheckout() {
         //Load the checkout page
-        System.out.println("Loading Checkout Page");
+        LOG.info("Loading Checkout Page");
 
         checkoutStage = new Stage();
         Parent root = null;
@@ -79,7 +81,8 @@ public class FXMLBuilderController implements Initializable {
             checkoutStage.setScene(scene);
 
         } catch (IOException ex) {
-            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.fatal(ex.toString());
+            System.exit(2);
         }
 
         //Hide the menu when the checkout menu is being shown
@@ -107,7 +110,7 @@ public class FXMLBuilderController implements Initializable {
     
     @FXML
     private void handleAdminButton() {
-        System.out.println("Loading Administration Page");
+        LOG.info("Loading Administration Page");
 
         adminStage = new Stage();
         Parent root = null;
@@ -120,7 +123,8 @@ public class FXMLBuilderController implements Initializable {
             adminStage.setScene(scene);
 
         } catch (IOException ex) {
-            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.fatal(ex.toString());
+            System.exit(3);
         }
 
         //Update the menu from the DB after the admin panel is closed
@@ -168,7 +172,8 @@ public class FXMLBuilderController implements Initializable {
         });
             
         } catch (IOException ex) {
-            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.fatal(ex.toString());
+            System.exit(4);
         }        
         
         //Launch test frame
@@ -196,7 +201,7 @@ public class FXMLBuilderController implements Initializable {
         displayTable.setItems(itemList.getItemList());
 
         //Setting up item columns
-        System.out.println("Setting up table columns");
+        LOG.info("Setting up table columns");
 
         //Setting up columns that correspond to database columns        
         TableColumn<TestItem, String> nameColumn = new TableColumn("Name");
@@ -231,10 +236,9 @@ public class FXMLBuilderController implements Initializable {
                 {
                     btn.setOnAction((ActionEvent event) -> {
                         TestItem data = getTableView().getItems().get(getIndex());
-                        System.out.println("selectedData: " + data);
+                        LOG.trace("selectedData: " + data);
                         addToCart(data);
                         showCart();
-                        System.out.println("\n\n");
                     });
                 }
 
@@ -272,7 +276,7 @@ public class FXMLBuilderController implements Initializable {
 
     public void showCart() {
         cart.forEach(e -> {
-            System.out.println(e);
+            LOG.trace(e);
         });
     }
 }

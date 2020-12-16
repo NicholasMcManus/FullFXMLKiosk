@@ -69,8 +69,6 @@ public class AdministrationPageController implements Initializable {
     @FXML
     private void handleItemCreate(ActionEvent event)
     {
-        //Delete before Commit:
-        //Insert Into TestItems(ItemName, ItemPrice, ItemDescription) Values ('Grilled Cheese', 1.50, 'Processed Cheese');
         String createStatement = "Insert Into TestItems(ItemName, ItemPrice, ItemDescription) Values (?,?,?)";
         try(PreparedStatement pState = connection.prepareStatement(createStatement))
         {
@@ -195,6 +193,10 @@ public class AdministrationPageController implements Initializable {
         itemList.loadItemList();
     }
     
+    /**
+     * Setup the restrictions to the price boxes 
+     * @param field The TextField to set restrictions on
+     */
     private void setupPriceRestrictions(TextField field)
     {
         field.textProperty().addListener((ObservableValue<? extends String> ov, String oValue, String nValue) -> {
