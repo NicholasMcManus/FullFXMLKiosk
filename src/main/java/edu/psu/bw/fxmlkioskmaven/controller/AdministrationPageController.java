@@ -16,12 +16,14 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
 
 /**
  * FXML Controller class
@@ -42,6 +44,8 @@ public class AdministrationPageController implements Initializable {
     private TextField createPrice;
     
     //Fields for updating items
+    @FXML
+    private Label updateStatus;
     @FXML
     private TextField updateName;
     @FXML
@@ -78,12 +82,14 @@ public class AdministrationPageController implements Initializable {
             String status;
             if(pState.executeUpdate() > 0)
             {
+                createStatus.setTextFill(Paint.valueOf("#00AA00"));
                 status = "Success";
                 resetCreateInput();
                 this.getData();
             }
             else
             {
+                createStatus.setTextFill(Paint.valueOf("#FF0000"));
                 status = "Failure";
             }
             createStatus.setText(status);
@@ -167,12 +173,14 @@ public class AdministrationPageController implements Initializable {
                 status = "Success";
                 resetCreateInput();
                 this.getData();
+                updateStatus.setTextFill(Paint.valueOf("#00AA00"));
             }
             else
             {
+                updateStatus.setTextFill(Paint.valueOf("#FF0000"));
                 status = "Failure";
             }
-            createStatus.setText(status);
+            updateStatus.setText(status);
             
         } catch (SQLException ex) {
             Logger.getLogger(AdministrationPageController.class.getName()).log(Level.SEVERE, null, ex);
@@ -185,6 +193,16 @@ public class AdministrationPageController implements Initializable {
     private void getData()
     {
         itemList.loadItemList();
+    }
+    
+    private void setupPriceRestrictions(TextField field)
+    {
+        field.textProperty().addListener((ObservableValue<? extends String> ov, String oValue, String nValue) -> {
+            if(!nValue.matches("\\d{0,7}([\\.]\\d{0,2})?"))
+            {
+                field.setText(oValue);
+            }
+        });
     }
     
     /**
@@ -228,5 +246,9 @@ public class AdministrationPageController implements Initializable {
           // it probably means no database file is found
           System.err.println(e.getMessage());
         }
+        
+        //Configure price boxes
+        setupPriceRestrictions(createPrice);
+        setupPriceRestrictions(updatePrice);
     }    
 }

@@ -32,7 +32,10 @@
             <TextField fx:id="createName" GridPane.columnIndex="1" />
             <TextField fx:id="createPrice" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="createDescription" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="createStatus" GridPane.rowIndex="3" />
+            <Label fx:id="createStatus" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
          </children>
       </GridPane>
       <ComboBox fx:id="deleteBox" layoutX="29.0" layoutY="185.0" prefWidth="150.0" />
@@ -46,7 +49,10 @@
             <TextField fx:id="updateName" GridPane.columnIndex="1" />
             <TextField fx:id="updatePrice" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="updateDescription" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="createStatus1" GridPane.rowIndex="3" />
+            <Label fx:id="updateStatus" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

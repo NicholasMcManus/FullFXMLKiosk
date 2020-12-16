@@ -13,7 +13,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="displayTable" layoutX="50.0" prefHeight="325.0" prefWidth="500.0" />
+            <TableView fx:id="displayTable" focusTraversable="false" layoutX="50.0" layoutY="9.0" prefHeight="325.0" prefWidth="500.0" />
          </children>
       </Pane>
    </center>
